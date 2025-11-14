@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
+import Hero from "@/components/home/Hero";
 
 const page = () => {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
+    <section>
+      <Hero />
+    </section>
   );
 };
 export default page;
