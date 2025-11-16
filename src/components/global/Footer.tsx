@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="">
+    <footer>
       <div className="meal-container border-t py-5 flex items-center justify-between">
         <p className="max-[520px]:text-center max-[520px]:flex-1 text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} Food KE. All rights reserved.
