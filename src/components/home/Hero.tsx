@@ -17,7 +17,7 @@ import imgMealE from "@/assets/pizza.jpg";
 import imgMealF from "@/assets/schnitzel.jpg";
 import imgMealG from "@/assets/tomato-salad.jpg";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const carouselItems = [
   { src: imgMealA, alt: "Meal A" },
@@ -29,8 +29,20 @@ const carouselItems = [
   { src: imgMealG, alt: "Meal G" },
 ];
 
+function shuffleArray<T>(array: T[]) {
+  return array
+    .map((item) => ({ item, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ item }) => item);
+}
+
 const Hero = () => {
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const [shuffledItems, setShuffledItems] = useState(carouselItems);
+
+  useEffect(() => {
+    setShuffledItems(shuffleArray(carouselItems));
+  }, []);
 
   return (
     <div className="meal-container">
@@ -44,7 +56,7 @@ const Hero = () => {
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
-              {carouselItems.map((item, index) => (
+              {shuffledItems.map((item, index) => (
                 <CarouselItem key={index}>
                   <Image
                     src={item.src}
